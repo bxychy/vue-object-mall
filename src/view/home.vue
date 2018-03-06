@@ -25,8 +25,16 @@ export default {
                 offsetWidth:0,
                 offsetHeight:0
             },
-
+            floors:[],
+            hot:[]
         }
+    },
+    mounted(){
+        productHome().then(res => {
+            const {home_floors,home_hot} = res.result;
+            this.floors = home_floors;
+            this.hot = home_hot;
+        });
     },
     methods:{
         // 鼠标移入
