@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <div class="banner">
-            <div class="banner-bg" ref="bannerBg" @mousemove="bannerBgOver($refs.bannerBg)">
+            <div class="banner-bg" ref="bannerBg" @mouseover="bannerBgOver($refs.bannerBg)" @mousemove="bannerBgMove($refs.bannerBg,$event)"  @mouseout="bannerBgOut($refs.bannerBg)">
                 <span class="img tanz-40"></span>
                 <span class="text tanz-20">要买就买<br/>不买别比比</span>
                 <span class="copyright tanz-0">code by qingjin.me | picture from t.tt</span>
@@ -30,11 +30,11 @@ export default {
         }
     },
     mounted(){
-        productHome().then(res => {
-            const {home_floors,home_hot} = res.result;
-            this.floors = home_floors;
-            this.hot = home_hot;
-        });
+        // productHome().then(res => {
+            // const {home_floors,home_hot} = res.result;
+            // this.floors = home_floors;
+            // this.hot = home_hot;
+        // });
     },
     methods:{
         // 鼠标移入
@@ -49,7 +49,7 @@ export default {
         // 鼠标移动
         bannerBgMove(dom,evn){
             // 获取移动时的位置
-            const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = this.bgOpt
+            const {offsetLeft, offsetTop, offsetWidth, offsetHeight} = this.bannerBgOpt
             let X,Y;
             let mouseX = evn.pageX - offsetLeft;
             let mouseY = evn.pageY - offsetTop;
@@ -68,6 +68,12 @@ export default {
 </script>
 
 <style>
+.banner, .banner span, .banner div {font-family: "Microsoft YaHei";transition: all .3s;-webkit-transition: all .3s;transition-timing-function: linear;-webkit-transition-timing-function: linear;}
+.banner {perspective: 3000px;position: relative;z-index: 19;}
+.banner-bg {position: relative;width: 1220px;height: 500px;margin: 20px auto;background: url("/static/images/banner-3d-item.png") center no-repeat;background-size: 100% 100%;border-radius: 10px;transform-style: preserve-3d;-webkit-transform-origin: 50% 50%;-webkit-transform: rotateY(0deg) rotateX(0deg);}
+.img {display: block;position: absolute;width: 100%;height: 100%;bottom: 5px;left: 0;background: url("/static/images/banner-3d.png") center no-repeat;background-size: 95% 100%;}
+.text {position: absolute;top: 20%;right: 10%;font-size: 30px;color: #fff;text-align: right;font-weight: lighter;}
+
 
 </style>
 
