@@ -20,4 +20,8 @@ export default {
 	color: #2c3e50;
 	margin-top: 60px;
 	}
+.w{width: 1220px;margin: 0 auto;}
+.mt30{margin-top: 30px;}
+li{list-style-type: none;}
+a{text-decoration:none;font-style: normal;color: #5079d9;cursor: pointer;transition: all .15s ease-out;}
 </style>

@@ -33,5 +33,5 @@ export const updateheadimage = (params) => {
 
 // 首页接口
 export const productHome = (params) => {
-    return http.fetchPost('/goods/productHome',params);
+    return http.fetchGet('/goods/productHome',params);
 }

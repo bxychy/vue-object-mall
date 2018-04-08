@@ -7,12 +7,34 @@
                 <span class="copyright tanz-0">code by qingjin.me | picture from t.tt</span>
             </div>
         </div>
+
+        <!-- 热门商品暂无数据 -->
+        <section class="w mt30 clearfix">
+            <v-Shelf title="热门商品">
+                <div slot="content" class="hot">
+                    <!-- <v-Mallgoods :msg="item" v-for="(item,index) in hot" :key="index"></v-Mallgoods> -->
+                </div>
+            </v-Shelf>
+        </section>
+
+        <section class="w mt30" v-for="(item,index) in floors" :key="index">
+            <v-shelf :title="item.title">
+                <div slot="content" class="floors">
+                    <div class="imgbanner">
+                        <img v-lazy="floors[index].image.image" :alt="item.title">
+                    </div>
+                    <v-Mallgoods :msg="tab" v-for="(tab,itab) in item.tabs" :key="itab"></v-Mallgoods>
+                </div>
+            </v-shelf>
+        </section>
+
     </div>
 </template>
 
 <script>
 import {productHome} from '../api/index.js'
-
+import vShelf from '/components/shelf.vue'
+import vMallgoods from '/components/mallGoods.vue'
 
 
 export default {
@@ -30,11 +52,12 @@ export default {
         }
     },
     mounted(){
-        // productHome().then(res => {
-            // const {home_floors,home_hot} = res.result;
-            // this.floors = home_floors;
-            // this.hot = home_hot;
-        // });
+        productHome().then(res => {
+            const {home_floors,home_hot} = res.result;
+            this.floors = home_floors;
+            console.log("首页商品数据返回-----",res.result)
+            this.hot = home_hot;
+        });
     },
     methods:{
         // 鼠标移入
@@ -64,6 +87,10 @@ export default {
             dom.style['-webkit-transform'] = 'rotateY(0deg) rotateX(0deg)';
         }
     },
+    components:{
+        vShelf,
+        vMallgoods,
+    },
 }
 </script>
 
@@ -73,7 +100,10 @@ export default {
 .banner-bg {position: relative;width: 1220px;height: 500px;margin: 20px auto;background: url("/static/images/banner-3d-item.png") center no-repeat;background-size: 100% 100%;border-radius: 10px;transform-style: preserve-3d;-webkit-transform-origin: 50% 50%;-webkit-transform: rotateY(0deg) rotateX(0deg);}
 .img {display: block;position: absolute;width: 100%;height: 100%;bottom: 5px;left: 0;background: url("/static/images/banner-3d.png") center no-repeat;background-size: 95% 100%;}
 .text {position: absolute;top: 20%;right: 10%;font-size: 30px;color: #fff;text-align: right;font-weight: lighter;}
+.copyright {position: absolute;bottom: 10%;right: 10%;font-size: 10px;color: #fff;text-align: right;font-weight: lighter;}
 
-
+.floors {width: 100%;display: flex;flex-wrap: wrap;align-items: center;}
+.floors .imgbanner {width: 50%;height: 430px;}
+.floors img {display: block;width: 100%;height: 100%;}
 </style>
 
