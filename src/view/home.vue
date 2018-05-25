@@ -10,7 +10,7 @@
 
         <!-- 热门商品暂无数据 -->
         <section class="w mt30 clearfix">
-            <v-Shelf title="热门商品">
+            <v-Shelf title="热门商品" @click="">
                 <div slot="content" class="hot">
                     <!-- <v-Mallgoods :msg="item" v-for="(item,index) in hot" :key="index"></v-Mallgoods> -->
                 </div>
@@ -85,6 +85,9 @@ export default {
         bannerBgOut(dom){
             dom.style.transform = 'rotateY(0deg) rotateX(0deg)';
             dom.style['-webkit-transform'] = 'rotateY(0deg) rotateX(0deg)';
+        },
+        openl(){
+            window.open('www.baidu,com','_system');
         }
     },
     components:{
