@@ -29,7 +29,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="shop pr" @mouseover="cartShowState(true)" @mouseout="cartShowState(false)" ref="positionMsg">
+                            <!-- <router-link to="/cart"></router-link> -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -55,7 +57,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import { loginOut } from '../api/index.js'
 
 export default {
@@ -97,7 +99,11 @@ export default {
         }
     },
     methods:{
-
+        ...mapMutations(['INIT_BUYCART','ADD_CART','ADD_ANIMATION','SHOW_CART']),
+        // 购物车显示
+        cartShowState(state){
+            this.SHOW_CART({showCart: state})
+        },
     }
 }
 </script>
