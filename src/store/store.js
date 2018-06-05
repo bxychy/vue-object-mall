@@ -14,7 +14,7 @@ const state = {
     userInfo:null,
 
     // 加入购物车列表
-    cartList:null,
+    cartList:[],
 
     // 飞入图片地址
     moveImgUrl: null,

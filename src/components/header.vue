@@ -30,19 +30,56 @@
                             </div>
                         </div>
                         <div class="shop pr" @mouseover="cartShowState(true)" @mouseout="cartShowState(false)" ref="positionMsg">
-                            <!-- <router-link to="/cart"></router-link> -->
+                            <router-link to="/cart"></router-link>
+                            <span class="cart-num">
+                                <i class="num" ref="num" :class="{no:totalNum <= 0,move_in_cart:receiveInCart}">{{totalNum}}</i>
+                            </span>
+                            <!-- 购物车显示块 -->
+                            <div class="nav-user-wrapper pa active" v-show="showCart">
+                                <div class="nav-user-list">
+                                    <!-- 购物列表 -->
+                                    <div class="full" v-show="totalNum">
+                                        <ul>
+                                            <li class="clearfix" v-for="(fix,fdex) in cartList" :key="fdex">
+                                                <div class="cart-item">
+                                                    <div class="cart-item-inner">
+                                                        <router-link>
+                                                            <div class="item-thumb">
+                                                                <img :src="fix.productImg">
+                                                            </div>
+                                                        </router-link>
+                                                        <div class="item-desc">
+                                                            <div class="cart-cell">
+                                                                <h4>
+                                                                    <router-link :to="'goodsDetails?productId='+item.productId" v-text="item.productName"></router-link>
+                                                                </h4>
+                                                                <p class="attrs"><span>白色</span></p>
+                                                                <h6>
+                                                                    <span class="price-icon">¥</span>
+                                                                    <span class="price-num">{{item.productPrice}}</span>
+                                                                    <span class="item-num">x {{item.productNum}}</span>
+                                                                </h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
 
-        <!--底部导航-->
+        <!--导航-->
         <div class="nav-sub footer-box" v-show="showNav" :class="{fixed:stf}">
             <div class="nav-sub-bg"></div>
             <div class="nav-sub-wrapper" :class="{fixed:stf}">
                 <div class="w">
-                    <ul class="nav-sub-list">
+                    <ul class="nav-list">
                         <li>
                             <router-link to="/">首页</router-link>
                         </li>
@@ -80,7 +117,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(['login','cartList']),
+        ...mapState(['login','cartList','showCart','receiveInCart']),
         // 计算价格
         totalPrice(){
             let totalPrice = 0;
@@ -108,7 +145,7 @@ export default {
 }
 </script>
 
-<style lang="scss" rel="stylesheet/scss">
+<style lang="scss" rel="stylesheet/scss" scoped>
 @import "../../static/scss/theme.scss";
 @import "../../static/scss/mixin.scss";
 </style>
@@ -138,6 +175,13 @@ header {height: 100px;z-index: 30;position: relative;}
 .nav-sub .nav-sub-wrapper .w .nav-list li:first-child{padding-left: 0;}
 .nav-sub .nav-sub-wrapper .w .nav-list li:first-child a{padding-left:10px;}
 .nav-sub .nav-sub-wrapper .w .nav-list li:before{content: ' ';position: absolute;left: 0;top: 13px;width: 2px;height: 2px;background: #bdbdbd;}
+
+
+.header-box .right-box .nav-aside{position: relative;display:flex;}
+.header-box .right-box .nav-aside:before{background: rgba(255, 255, 255, 0.2);content: " ";width: 1px;height: 13px;overflow: hidden;position: absolute;top: 4px;left: 0;}
+.header-box .right-box .nav-aside .user{margin-left: 41px;width: 36px;}
+.header-box .right-box .nav-aside .user a{position: relative;width: 36px;height: 20px;display: block;text-indent: -9999px;}
+.header-box .right-box .nav-aside .user a:before{content: " ";position: absolute;left: 8px;top: 0;width: 20px;height: 20px;background:url(/static/images/account-icon.png) -155px 0;background-size: 240px 107px;transition: none;}
 
 @media (min-width: 1px) {
     .nav-sub .nav-sub-wrapper:after {display: block;}
