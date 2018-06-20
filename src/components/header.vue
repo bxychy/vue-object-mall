@@ -30,42 +30,49 @@
                             </div>
                         </div>
                         <div class="shop pr" @mouseover="cartShowState(true)" @mouseout="cartShowState(false)" ref="positionMsg">
-                            <router-link to="/cart"></router-link>
+                            <router-link to="/cart" class="shop-a"></router-link>
                             <span class="cart-num">
                                 <i class="num" ref="num" :class="{no:totalNum <= 0,move_in_cart:receiveInCart}">{{totalNum}}</i>
                             </span>
                             <!-- 购物车显示块 -->
                             <div class="nav-user-wrapper pa active" v-show="showCart">
+                                <!-- 购物列表 -->
                                 <div class="nav-user-list">
-                                    <!-- 购物列表 -->
                                     <div class="full" v-show="totalNum">
-                                        <ul>
-                                            <li class="clearfix" v-for="(fix,fdex) in cartList" :key="fdex">
-                                                <div class="cart-item">
-                                                    <div class="cart-item-inner">
-                                                        <router-link>
-                                                            <div class="item-thumb">
-                                                                <img :src="fix.productImg">
-                                                            </div>
-                                                        </router-link>
-                                                        <div class="item-desc">
-                                                            <div class="cart-cell">
-                                                                <h4>
-                                                                    <router-link :to="'goodsDetails?productId='+item.productId" v-text="item.productName"></router-link>
-                                                                </h4>
-                                                                <p class="attrs"><span>白色</span></p>
-                                                                <h6>
-                                                                    <span class="price-icon">¥</span>
-                                                                    <span class="price-num">{{item.productPrice}}</span>
-                                                                    <span class="item-num">x {{item.productNum}}</span>
-                                                                </h6>
+                                        <!-- 购物列表 -->
+                                        <div class="nav-cart-items">
+                                            <ul>
+                                                <li class="clearfix" v-for="(fix,fdex) in cartList" :key="fdex">
+                                                    <div class="cart-item">
+                                                        <div class="cart-item-inner">
+                                                            <router-link>
+                                                                <div class="item-thumb">
+                                                                    <img :src="fix.productImg">
+                                                                </div>
+                                                            </router-link>
+                                                            <div class="item-desc">
+                                                                <div class="cart-cell">
+                                                                    <h4>
+                                                                        <router-link :to="'goodsDetails?productId='+item.productId" v-text="item.productName"></router-link>
+                                                                    </h4>
+                                                                    <p class="attrs"><span>白色</span></p>
+                                                                    <h6>
+                                                                        <span class="price-icon">¥</span>
+                                                                        <span class="price-num">{{item.productPrice}}</span>
+                                                                        <span class="item-num">x {{item.productNum}}</span>
+                                                                    </h6>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
+                                </div>
+                                <!-- 总件数 -->
+                                <div class="nav-cart-total">
+                                    
                                 </div>
                             </div>
                         </div>
@@ -161,8 +168,6 @@ header {height: 100px;z-index: 30;position: relative;}
 .nav-list a{color: #c8c8c8;display: block;font-size: 14px;padding: 0 25px;}
 .nav-list a:hover{color: #fff;}
 
-
-
 .nav-sub{position: relative;height: 90px;background: #f7f7f7;box-shadow: 0 2px 4px rgba(0, 0, 0, .04);z-index: 1;}
 .nav-sub .fixed{position: fixed;z-index: 21;height: 60px;top: 0;left: 0;right: 0;border-bottom: 1px solid #dadada;background-image: -webkit-linear-gradient(#fff, #f1f1f1);background-image: linear-gradient(#fff, #f1f1f1);}
 .nav-sub .nav-sub-wrapper{padding: 31px 0;height: 90px;position: relative;}
@@ -183,11 +188,30 @@ header {height: 100px;z-index: 30;position: relative;}
 .header-box .right-box .nav-aside .user a{position: relative;width: 36px;height: 20px;display: block;text-indent: -9999px;}
 .header-box .right-box .nav-aside .user a:before{content: " ";position: absolute;left: 8px;top: 0;width: 20px;height: 20px;background:url(/static/images/account-icon.png) -155px 0;background-size: 240px 107px;transition: none;}
 
+.header-box .right-box .nav-aside .shop{position: relative;float: left;margin-left: 21px;width: 61px;z-index: 99;}
+.header-box .right-box .nav-aside .shop:hover a:before{content: " ";background-position: 0 -22px;}
+.header-box .right-box .nav-aside .shop .nav-user-wrapper.active{top: 18px;visibility: visible;opacity: 1;-webkit-transition: opacity .15s ease-out;transition: opacity .15s ease-out;}
+.header-box .right-box .nav-aside .shop .shop-a{ position: absolute;left: 0;top: 0;bottom: 0;display: block;right: 0;z-index: 1;}
+.header-box .right-box .nav-aside .shop .shop-a::before{display: block;width: 30px;height: 100%;content: " ";background: url(/static/images/account-icon.png) 0 -22px;background-size: 240px 107px;background-position: -150px -22px;}
+.header-box .right-box .nav-aside .shop .cart-num{position: relative;display: block;margin-left: 31px;margin-top: -1px;min-width: 30px;text-indent: 0;line-height: 20px;}
+.header-box .right-box .nav-aside .shop .cart-num i.num{background: #eb746b;background-image: -webkit-linear-gradient(#eb746b, #e25147);background-image: linear-gradient(#eb746b, #e25147);box-shadow: inset 0 0 1px hsla(0, 0%, 100%, .15), 0 1px 2px hsla(0, 0%, 100%, .15);text-align: center;font-style: normal;display: inline-block;width:20px;height:20px;line-height: 20px;border-radius: 10px;color: #fff;font-size: 12px;}
+.header-box .right-box .nav-aside .shop .cart-num i.num.no{background: #969696;background-image: -webkit-linear-gradient(#A4A4A4, #909090);background-image: linear-gradient(#A4A4A4, #909090);box-shadow: inset 0 0 1px #838383, 0 1px 2px #838383;}
+.header-box .right-box .nav-aside .shop .nav-user-wrapper{right: 0;width: 360px;}
+.header-box .right-box .nav-aside .shop .nav-user-wrapper .nav-user-list::before{right: 34px;}
+.header-box .right-box .nav-aside .shop .nav-user-list{padding: 0;width: 100%;}
+.header-box .right-box .nav-aside .shop .nav-user-list .full{border-radius: 8px;overflow: hidden;}
+
+
+/* 用户信息 */
+.nav-user-wrapper{position: absolute;z-index: 30;padding-top: 18px;opacity: 0;visibility: hidden;top: -3000px;}
+.nav-user-wrapper .nav-user-list{position: relative;padding-top: 20px;background: #fff;border: 1px solid #d6d6d6;border-color: rgba(0, 0, 0, .08);border-radius: 8px;box-shadow: 0 20px 40px rgba(0, 0, 0, .15);z-index: 10;}
+.nav-user-wrapper .nav-user-list::before{position: absolute;content: " ";background: url(/static/images/account-icon.png) no-repeat -49px -43px;background-size: 240px 107px;width:20px;height:8px;top: -8px;margin-left: -10px;}
+
+
+
 @media (min-width: 1px) {
     .nav-sub .nav-sub-wrapper:after {display: block;}
 }
-
-
 </style>
 
 
