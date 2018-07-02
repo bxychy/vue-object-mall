@@ -5,11 +5,13 @@ import App from './App'
 import router from './router/index.js'
 import store from './store/store.js'
 import VueLazyload from 'vue-lazyload'
+import infiniteScroll from 'vue-infinite-scroll'
 import VueCookie from 'vue-cookie'
 import { userInfo } from './api/index.js'
 
 Vue.config.productionTip = false
 
+Vue.use(infiniteScroll)
 Vue.use(VueCookie);
 Vue.use(VueLazyload, {
   // preLoad: 1.3,

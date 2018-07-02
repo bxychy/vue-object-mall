@@ -2,7 +2,7 @@
   	<div id="app" class="main">
 		<v-header></v-header>
     	<!-- <img src="./assets/logo.png"> -->
-    	<router-view  />
+    	<router-view class="main" />
 		<v-footer></v-footer>
   	</div>
 </template>

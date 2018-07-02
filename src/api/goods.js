@@ -1,5 +1,6 @@
 // 商品数据接口
 import http from './public.js'
+const baseUrl = '/api'
 
 // 获取购物车列表
 export const getCartList = (params) => {
@@ -59,7 +60,8 @@ export const delOrder = (params) => {
 
 // 电脑列表
 export const getComputer = (params) => {
-    return http.fetchGet('/goods/computer', params);
+    // console.log('api-goods---63',params);
+    return http.fetchGet(baseUrl + '/goods/computer', params);
 }
 
 // 加入购物车
@@ -79,5 +81,5 @@ export const delCart = (params) => {
 
 // 商品详情
 export const productDet = (params) => {
-    return http.fetchGet('/goods/productDet', params);
+    return http.fetchGet(baseUrl + '/goods/productDet', params);
 }

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {productHome} from '../api/index.js'
+import {productHome} from '/api/index.js'
 import vShelf from '/components/shelf.vue'
 import vMallgoods from '/components/mallGoods.vue'
 

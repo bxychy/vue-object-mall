@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import { userLogin, register } from '../api/index.js'
-import { addCartBatch } from '../api/goods.js'
-import { getStore, removeStore } from '../utils/storage.js'
+import { userLogin, register } from '../../api/index.js'
+import { addCartBatch } from '../../api/goods.js'
+import { getStore, removeStore } from '../../utils/storage.js'
 
 import vButton from '/components/button.vue'
 

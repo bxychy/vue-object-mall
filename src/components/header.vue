@@ -68,11 +68,21 @@
                                                 </li>
                                             </ul>
                                         </div>
+                                        <!-- 总件数 -->
+                                        <div class="nav-cart-total">
+                                            <p>共<strong>{{totalNum}}</strong>件商品</p>
+                                            <h5>合计:
+                                                <span class="price-icon">¥</span>
+                                                <span class="price-num">{{totalPrice}}</span>
+                                            </h5>
+                                            <h6>
+                                                <v-button classStyle="main-btn" style="height: 40px;width: 100%;margin: 0;color: #fff;font-size: 14px;line-height: 38px" text="去购物车" @btnClick="toCart"></v-button>
+                                            </h6>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- 总件数 -->
-                                <div class="nav-cart-total">
-                                    
+                                    <div class="cart-con" v-show="!totalNum" style="height: 313px;text-align: center">
+                                        <p>你的购物车竟然是空的!</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -103,6 +113,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 import { loginOut } from '../api/index.js'
+import vButton from '/components/button.vue'
 
 export default {
     data(){
@@ -148,6 +159,13 @@ export default {
         cartShowState(state){
             this.SHOW_CART({showCart: state})
         },
+        // 跳转购物车
+        toCart () {
+            this.$router.push({path: '/cart'});
+        },
+    },
+    components:{
+        vButton
     }
 }
 </script>
@@ -206,8 +224,9 @@ header {height: 100px;z-index: 30;position: relative;}
 .nav-user-wrapper{position: absolute;z-index: 30;padding-top: 18px;opacity: 0;visibility: hidden;top: -3000px;}
 .nav-user-wrapper .nav-user-list{position: relative;padding-top: 20px;background: #fff;border: 1px solid #d6d6d6;border-color: rgba(0, 0, 0, .08);border-radius: 8px;box-shadow: 0 20px 40px rgba(0, 0, 0, .15);z-index: 10;}
 .nav-user-wrapper .nav-user-list::before{position: absolute;content: " ";background: url(/static/images/account-icon.png) no-repeat -49px -43px;background-size: 240px 107px;width:20px;height:8px;top: -8px;margin-left: -10px;}
-
-
+.cart-con {text-align: center;position: relative;}
+.cart-con p{padding-top: 185px;color: #333333;font-size: 16px;}
+.cart-con:before {position: absolute;content: ' ';left: 50%;transform: translate(-50%, -70%);top: 50%;width: 76px;height: 62px;background: url("/static/images/cart-empty-new.png") no-repeat;background-size: cover;}
 
 @media (min-width: 1px) {
     .nav-sub .nav-sub-wrapper:after {display: block;}

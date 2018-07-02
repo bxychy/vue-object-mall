@@ -2,7 +2,7 @@
     <div class="mallGoods good-item">
         <div class="good-bg">
             <div class="good-img">
-                <router-link :to="'goodsDetails ? productId=' + msg.productId">
+                <router-link :to="'goodsDetail?productId=' + msg.productId">
                     <img v-lazy="msg.productImageBig" :alt="msg.productName">
                 </router-link>
             </div>
@@ -12,7 +12,7 @@
 
             <div class="good-price">
                 <div class="good-flex">
-                    <router-link :to="'goodsDetails?productId=' + msg.productId">
+                    <router-link :to="'goodsDetail?productId=' + msg.productId">
                         <v-button text="查看详情" style="margin: 0 5px" ></v-button>
                     </router-link>
                     <v-button text="加入购物车" style="margin: 0 5px"@btnClick="addCart(msg.productId,msg.salePrice,msg.productName,msg.productImageBig)" classStyle="main-btn"></v-button>
@@ -38,7 +38,7 @@ export default {
         msg:{ type:[Object,Array] }
     },
     mounted () {
-        console.log(this.msg);
+        // console.log(this.msg);
     },
     methods:{
         addCart(id,price,name,img){
